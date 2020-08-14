@@ -1,0 +1,75 @@
+const express = require('express');
+const router = express.Router();
+const hdatabase = require('./hdatabase');
+
+router.get('/user_profile_details', (req, res, next)=>{
+    hdatabase.find(function(err, profiles){
+        res.json(profiles);
+    });
+});
+
+router.get('/user', (req, res, next)=>{
+    hdatabase.find(function(err, user){
+        res.json(user);
+    });
+});
+
+router.post('/staff', (req, res, next)=>{
+    let newstaff = new staff({
+        sid: req.body.sid,
+        uid: req.body.uid,
+        hid: req.body.hid,
+        provider_type: req.body.provider_type,
+        speciality: req.body.speciality,
+        sift: req.body.sift,
+        language: req.body.language,
+        FTE: req.body.FTE,
+    });
+    newstaff.save(err, saved)=>{
+        if(err){
+            res.json({msg: 'failed to add staff details'})
+        } else {
+            res.json({msg: 'staff details added successfully'})
+        };
+    };
+});
+
+router.post('/schedules', (req, res,)=>{
+    let newshedules = new shedules({
+        scld: req.body.scld,
+        uid: req.body.uid,
+        title: req.body.title,
+        sift: req.body.sift,
+        startdate: req.body.startdate,
+        starttime: req.body.starttime,
+        enddate: req.body.enddate,
+        endtime: req.body.endtime,
+        repeat: req.body.repeat,
+        staff: req.body.staff,
+    });
+    newshedules.save(err, saved)=>{
+        if(err){
+            res.json({msg: 'failed to add your shedules'});
+        }else {
+            res.json({msg: 'your shedules added successfully'});
+        };
+    };
+});
+
+router.set('/hospital', (req, res, next)=>{
+    hdatabase.find(function(err, hospital){
+        res.json(hospital);
+    });
+});
+
+router.set('/team', (req, res, next)=>{
+    hdatabase.find(function(err, team){
+        res.json(team)
+    });
+});
+
+router.set('/team_lookup', (req, res, next)=>{
+    hdatabase.find(function(err, team_lookup){
+        res.json(team_lookup)
+    });
+});
