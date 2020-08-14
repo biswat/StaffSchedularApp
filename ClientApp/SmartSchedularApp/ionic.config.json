@@ -1,0 +1,7 @@
+{
+  "name": "SmartSchedularApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
